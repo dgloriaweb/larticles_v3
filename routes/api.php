@@ -22,3 +22,7 @@ Route::get('articles/{id}', 'ArticleController@show');
 Route::post('articles', 'ArticleController@store');
 Route::put('articles/{id}', 'ArticleController@store');
 Route::delete('articles/{id}', 'ArticleController@destroy');
+
+Route::prefix('/user')->group( function() {
+    Route::post('/login', 'LoginController@login');
+});

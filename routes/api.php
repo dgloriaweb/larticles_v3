@@ -25,4 +25,7 @@ Route::delete('articles/{id}', 'ArticleController@destroy');
 
 Route::prefix('/user')->group( function() {
     Route::post('/login', 'LoginController@login');
+    Route::middleware('auth:api')->get('/all','UserController@index');
 });
+
+

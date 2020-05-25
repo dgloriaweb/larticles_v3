@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Http\Resources\ArticleResource;
 
+
 class ArticleController extends Controller
 {
     /**
@@ -15,11 +16,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-               // Get articles
-               $articles = Article::paginate(15);
+        // Get articles
+        $articles = Article::paginate(15);
 
-               // Return collection of articles as a resource
-               return ArticleResource::collection($articles);
+        // Return collection of articles as a resource
+        return ArticleResource::collection($articles);
     }
 
     /**

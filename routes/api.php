@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{id}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{id}', 'ArticleController@store');
-Route::delete('articles/{id}', 'ArticleController@destroy');
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('/', 'LoginController@index');
+Route::middleware('auth:api')->group(function () {
+    Route::get('articles', 'ArticleController@index');
+    Route::get('articles/{id}', 'ArticleController@show');
+    Route::post('articles', 'ArticleController@store');
+    Route::put('articles/{id}', 'ArticleController@store');
+    Route::delete('articles/{id}', 'ArticleController@destroy');
 
-Route::prefix('/user')->group( function() {
-    Route::post('/login', 'LoginController@login');
-    Route::middleware('auth:api')->get('/all','UserController@index');
-});
+    Route::prefix('/user')->group(function () {
+        Route::get('/', 'UserController@index');
+        Route::post('/login', 'LoginController@login');
 
+    });
+});
 
